@@ -9,11 +9,11 @@ var character_image = new Image();
 var level_one_image = new Image();
 var level_two_image = new Image();
 var level_three_image = new Image();
-//TODO: change image names
-character_image.src = "images/crazycat.gif";  
-level_one_image.src = "images/crazycat.gif";  
-level_two_image.src = "images/crazycat.gif";  
-level_three_image.src = "images/crazycat.gif";  
+
+character_image.src = "images/raccoon.png";  
+level_one_image.src = "images/level_one.jpg";  
+level_two_image.src = "images/level_two.jpg";  
+level_three_image.src = "images/level_three.jpg";  
 
 var x = 0; 
 var y = 0; 
@@ -72,7 +72,7 @@ function levelTwo() {
 
     update();
     //TODO: if reached exit, go to level three
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
+    if (x + character_image.width / 2 >= finish_x && y + character_image.height / 2 >= finish_y) {
         levelThree();
     }
 }
