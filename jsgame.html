@@ -3,15 +3,24 @@
 <head>
 	<title>Raccoon Runner</title>
 	<meta charset="UTF-8">
+  <link rel="stylesheet" href="jsgame.css">
 </head>
-  <body style="text-align: center;">
+  <body>
     <header> 
       <h1>Raccoon Runner</h1>
     </header>
+    <p id="instructions">Please use arrow keys to guide the raccoon to the exit of the forest.</p>
 
-    <canvas id="canvas" width="800" height="800" style="border: 1px solid;"></canvas>
     <br>
-    <button id="play" value="Play">Start Game</button>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <div id="score">
+    <p id="cur_time"></p>
+    <p id="best_time"></p>
+    </div>
+
+    <br>
+    <button id="button" onclick="play()" value="Start">Start Game</button>
 
     <script src="jsgame.js"></script>
   </body>

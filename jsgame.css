@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(204, 221, 197);
+}
+
+h1 {
+    color: rgb(73, 104, 59);
+    text-align: center;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    font-size: 42px;
+}
+
+#canvas {
+    border: 1px solid;
+    display: none;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(73, 104, 59);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+#score {
+    font-size: 26px;
+}
