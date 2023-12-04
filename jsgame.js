@@ -24,12 +24,15 @@ var level_image;
 
 var curTime = 0;
 var bestTime = 0;
+var timer;
 
 function play() {
     if (btn.value == "Start") {
         canvas.style.display = "inline-block";
         btn.style.display = "none";
         //if play button is pressed, go to level one
+        timer = setInterval(updateTimer, 1000);
+        updateTimer();
         levelOne();
     }
     else {
@@ -92,6 +95,7 @@ function levelThree() {
 }
 
 function gameOver() {
+    cancelInterval(timer);
     btn.value = "Restart";
     btn.innerHTML = "Restart Game";
     canvas.style.display = "none";
@@ -118,6 +122,12 @@ function update() {
     draw.drawImage(character_image, x, y); //draw character image
     //TODO: draw maze level walls
 }
+
+function updateTimer() {
+    curTime = curTime + 1;
+    document.getElementById('cur_time').textContent = "Your Time: " + curTime;
+    
+  }
 
 
 //TODO: check against maze walls collision
