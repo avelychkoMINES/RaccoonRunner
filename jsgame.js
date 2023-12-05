@@ -11,7 +11,7 @@ var level_two_image = new Image();
 var level_three_image = new Image();
 var collectable_image = new Image();
 
-var level_one_collectables = [[0,100], [50,50], [400,20]]; //TODO: add locations to add apples
+var level_one_collectables = [[0,100], [50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [400,200]]; //TODO: add locations to add apples
 var level_two_collectables = [[1,1]];//TODO: add locations to add apples
 var level_three_collectables = [[1,1]];//TODO: add locations to add apples
 
@@ -21,8 +21,10 @@ level_two_image.src = "images/level_two.jpg";
 level_three_image.src = "images/level_three.jpg";  
 collectable_image.src = "images/apple.webp";
 
-var raccoon_width = 50; //TODO: For apple collisions
-var raccoon_height = 50; //TODO: For Apple collisions
+var raccoon_offset_x = character_image.width / 2; //sets up collision bounds
+var raccoon_offset_y = character_image.height / 2;//sets up collision bounds
+var collision_radius = raccoon_offset_x- 10;
+
 var x = 0; 
 var y = 0; 
 var finish_x = 0; 
@@ -130,8 +132,8 @@ function update() {
     //checks collectables and draws them
     for(var i =0; i < level_array.length; i++){
         if(level_array[i] != undefined){
-            //TODO: might need to update boundries based on raccoon size
-            if(((level_array[i][0] -30 - raccoon_width <= x) && (level_array[i][0] + 30 +raccoon_width >= x)) && ((level_array[i][1] - 30<= y) && (level_array[i][1] + raccoon_height+ 30 >= y))){
+            console.log(character_image.width);
+            if(((level_array[i][0] - 60 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 30 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 60 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 30 + collision_radius  >= y + raccoon_offset_y))){
                 points++;
                 delete level_array[i];
             }else if(level_array[i] != undefined){
