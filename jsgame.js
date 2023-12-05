@@ -21,7 +21,6 @@ level_two_image.src = "images/level_two.jpg";
 level_three_image.src = "images/level_three.jpg";  
 collectable_image.src = "images/apple.webp";
 
-
 var raccoon_width = 50; //TODO: For apple collisions
 var raccoon_height = 50; //TODO: For Apple collisions
 var x = 0; 
@@ -31,6 +30,7 @@ var finish_y = 0;
 var step = 5;
 var level_image;
 var level_array;
+var level;
 
 var curTime = 0;
 var bestTime = 0;
@@ -63,50 +63,40 @@ function mainMenu() {
     curTime = 0; //reset current time if game was restarted
 }
 
-
 function levelOne() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = canvas.width; //TODO: set where the end is
-    finish_y = canvas.height; //TODO: set where the end is
+    x = 10; //start is 10
+    y = 60; //start is 60
+    finish_x = 790; //end is 790
+    finish_y = 290; //end is 290
     level_image = level_one_image;
     level_array = level_one_collectables;
+    level = 1;
 
     update();
-    //TODO: if reached exit, go to level two
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
-        levelTwo();
-    }
 }
 
 function levelTwo() {
-    x = 0; //TODO: set where the start is 
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 317; //start is 317
+    y = 107; //start is 107
+    finish_x = 10; //end is 10
+    finish_y = 296; //end is 295
     level_image = level_two_image;
     level_array = level_two_collectables;
+    level = 2;
 
     update();
-    //TODO: if reached exit, go to level three
-    if (x + character_image.width / 2 >= finish_x && y + character_image.height / 2 >= finish_y) {
-        levelThree();
-    }
 }
 
 function levelThree() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 52; //start is 52
+    y = 61; //start is 61
+    finish_x = 780; //end is 780
+    finish_y = 296; //end is 296
     level_image = level_three_image;
     level_array = level_three_collectables;
+    level = 3;
 
     update();
-    //TODO: if reached exit, display results
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
-        gameOver();
-    }
 }
 
 function gameOver() {
@@ -154,15 +144,26 @@ function update() {
     draw.drawImage(character_image, x, y); //draw character image
 
     document.getElementById('points').textContent = "Points: " + points;
+
+    console.log("x ", x + character_image.width, "y", y + character_image.height, "finish x ", finish_x - step, "finish y ", finish_y - step);
+
+    //if reached finish, go onto next
+    if (x + character_image.width >= finish_x - step && y + character_image.height >= finish_y - step) {
+        if (level == 1) {
+            levelTwo();
+        } else if (level == 2) {
+            levelThree();
+        } else if (level == 3) {
+            gameOver();
+        }
+    }
 }
 
 //updates timer every second
 function updateTimer() {
     curTime = curTime + 1;
     document.getElementById('cur_time').textContent = "Your Time: " + curTime;
-    
-  }
-
+}
 
 //TODO: check against maze walls collision
 //arrow key listener
@@ -196,4 +197,14 @@ document.addEventListener('keydown', function(e) {
             update();
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    canvas.addEventListener("click", function (event) {
+        var rect = canvas.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+
+        alert("Coordinates: (" + x + ", " + y + ")");
+    });
 });
