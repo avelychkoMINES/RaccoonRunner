@@ -9,11 +9,17 @@ var character_image = new Image();
 var level_one_image = new Image();
 var level_two_image = new Image();
 var level_three_image = new Image();
+var collectable_image = new Image();
+
+var level_one_collectables = [[0,100]]; //TODO: add locations to add apples? //in multiples of 5
+var level_two_collectables = [[1,1]];//TODO: add locations to add apples? //in multiples of 5
+var level_three_collectables = [[1,1]];//TODO: add locations to add apples? //in multiples of 5
 
 character_image.src = "images/raccoon.png";  
 level_one_image.src = "images/level_one.jpg";  
 level_two_image.src = "images/level_two.jpg";  
 level_three_image.src = "images/level_three.jpg";  
+collectable_image.src = "images/raccoon.png"; //TODO: Update with collectable image
 
 var x = 0; 
 var y = 0; 
@@ -21,16 +27,19 @@ var finish_x = 0;
 var finish_y = 0;
 var step = 5;
 var level_image;
+var level_array;
 
 var curTime = 0;
 var bestTime = 0;
 var timer;
+var points = 0;
 
 function play() {
     if (btn.value == "Start") {
         canvas.style.display = "inline-block";
         btn.style.display = "none";
         //if play button is pressed, go to level one
+        points = 0;
         timer = setInterval(updateTimer, 1000);
         updateTimer();
         levelOne();
@@ -58,6 +67,7 @@ function levelOne() {
     finish_x = canvas.width; //TODO: set where the end is
     finish_y = canvas.height; //TODO: set where the end is
     level_image = level_one_image;
+    level_array = level_one_collectables;
 
     update();
     //TODO: if reached exit, go to level two
@@ -72,6 +82,7 @@ function levelTwo() {
     finish_x = 0; //TODO: set where the end is
     finish_y = 0; //TODO: set where the end is
     level_image = level_two_image;
+    level_array = level_two_collectables;
 
     update();
     //TODO: if reached exit, go to level three
@@ -86,6 +97,7 @@ function levelThree() {
     finish_x = 0; //TODO: set where the end is
     finish_y = 0; //TODO: set where the end is
     level_image = level_three_image;
+    level_array = level_three_collectables;
 
     update();
     //TODO: if reached exit, display results
@@ -120,9 +132,23 @@ function update() {
     draw.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
     draw.drawImage(level_image, 0, 0, canvas.width, canvas.height); //draw level image
     draw.drawImage(character_image, x, y); //draw character image
+    
     //TODO: draw maze level walls
+
+    //checks collectables
+    for(var i =0; i < level_array.length; i++){
+        if((level_array[i][0] == x ) && (level_array[i][1] == y)){
+            points++;
+            delete level_array[i];
+        }else if(level_array[i] != undefined){
+            draw.drawImage(collectable_image, level_array[i][0], level_array[i][1]); //might need to update image size
+        }
+    }
+
+    document.getElementById('points').textContent = "Points: " + points;
 }
 
+//updates timer every second
 function updateTimer() {
     curTime = curTime + 1;
     document.getElementById('cur_time').textContent = "Your Time: " + curTime;
@@ -132,26 +158,31 @@ function updateTimer() {
 
 //TODO: check against maze walls collision
 //arrow key listener
+//e.preventDefault stops it from scrolling page
 document.addEventListener('keydown', function(e) {
     if (e.key == "ArrowRight") {
+        e.preventDefault();
         if (x + character_image.width <= canvas.width) {
             x += step;
             update();
         }
     }
     else if (e.key == "ArrowLeft") {
+        e.preventDefault();
         if (x - step >= 0) {
             x -= step;
             update();
         }
     }
     else if (e.key == "ArrowUp") {
+        e.preventDefault();
         if (y - step >= 0) {
             y -= step;
             update();
         }
     }
     else if (e.key == "ArrowDown") {
+        e.preventDefault();
         if (y + step + character_image.height <= canvas.height) {
             y += step;
             update();
