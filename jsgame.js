@@ -11,16 +11,19 @@ var level_two_image = new Image();
 var level_three_image = new Image();
 var collectable_image = new Image();
 
-var level_one_collectables = [[0,100]]; //TODO: add locations to add apples? //in multiples of 5
-var level_two_collectables = [[1,1]];//TODO: add locations to add apples? //in multiples of 5
-var level_three_collectables = [[1,1]];//TODO: add locations to add apples? //in multiples of 5
+var level_one_collectables = [[0,100], [50,50], [400,20]]; //TODO: add locations to add apples
+var level_two_collectables = [[1,1]];//TODO: add locations to add apples
+var level_three_collectables = [[1,1]];//TODO: add locations to add apples
 
 character_image.src = "images/raccoon.png";  
 level_one_image.src = "images/level_one.jpg";  
 level_two_image.src = "images/level_two.jpg";  
 level_three_image.src = "images/level_three.jpg";  
-collectable_image.src = "images/raccoon.png"; //TODO: Update with collectable image
+collectable_image.src = "images/apple.webp";
 
+
+var raccoon_width = 50; //TODO: For apple collisions
+var raccoon_height = 50; //TODO: For Apple collisions
 var x = 0; 
 var y = 0; 
 var finish_x = 0; 
@@ -31,7 +34,7 @@ var level_array;
 
 var curTime = 0;
 var bestTime = 0;
-var timer;
+var timer; 
 var points = 0;
 
 function play() {
@@ -131,19 +134,24 @@ character_image.onload = function() {
 function update() {
     draw.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
     draw.drawImage(level_image, 0, 0, canvas.width, canvas.height); //draw level image
-    draw.drawImage(character_image, x, y); //draw character image
     
     //TODO: draw maze level walls
 
-    //checks collectables
+    //checks collectables and draws them
     for(var i =0; i < level_array.length; i++){
-        if((level_array[i][0] == x ) && (level_array[i][1] == y)){
-            points++;
-            delete level_array[i];
-        }else if(level_array[i] != undefined){
-            draw.drawImage(collectable_image, level_array[i][0], level_array[i][1]); //might need to update image size
+        if(level_array[i] != undefined){
+            //TODO: might need to update boundries based on raccoon size
+            if(((level_array[i][0] -30 - raccoon_width <= x) && (level_array[i][0] + 30 +raccoon_width >= x)) && ((level_array[i][1] - 30 - raccoon_height<= y) && (level_array[i][1] + 30 >= y))){
+                points++;
+                delete level_array[i];
+            }else if(level_array[i] != undefined){
+                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 30, 30); //might need to update image size
+            }
         }
+        
     }
+
+    draw.drawImage(character_image, x, y); //draw character image
 
     document.getElementById('points').textContent = "Points: " + points;
 }
