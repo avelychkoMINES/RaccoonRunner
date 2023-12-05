@@ -141,7 +141,7 @@ function update() {
     for(var i =0; i < level_array.length; i++){
         if(level_array[i] != undefined){
             //TODO: might need to update boundries based on raccoon size
-            if(((level_array[i][0] -30 - raccoon_width <= x) && (level_array[i][0] + 30 +raccoon_width >= x)) && ((level_array[i][1] - 30 - raccoon_height<= y) && (level_array[i][1] + 30 >= y))){
+            if(((level_array[i][0] -30 - raccoon_width <= x) && (level_array[i][0] + 30 +raccoon_width >= x)) && ((level_array[i][1] - 30<= y) && (level_array[i][1] + raccoon_height+ 30 >= y))){
                 points++;
                 delete level_array[i];
             }else if(level_array[i] != undefined){
