@@ -21,9 +21,6 @@ level_two_image.src = "images/level_two.jpg";
 level_three_image.src = "images/level_three.jpg";  
 collectable_image.src = "images/apple.webp";
 
-
-var raccoon_width = 50; //TODO: For apple collisions
-var raccoon_height = 50; //TODO: For Apple collisions
 var x = 0; 
 var y = 0; 
 var finish_x = 0; 
@@ -140,8 +137,7 @@ function update() {
     //checks collectables and draws them
     for(var i =0; i < level_array.length; i++){
         if(level_array[i] != undefined){
-            //TODO: might need to update boundries based on raccoon size
-            if(((level_array[i][0] -30 - raccoon_width <= x) && (level_array[i][0] + 30 +raccoon_width >= x)) && ((level_array[i][1] - 30<= y) && (level_array[i][1] + raccoon_height+ 30 >= y))){
+            if(((level_array[i][0] -30 <= x) && (level_array[i][0] + 30 + character_image.width >= x)) && ((level_array[i][1] - 30<= y) && (level_array[i][1] + character_image.heightt+ 30 >= y))){
                 points++;
                 delete level_array[i];
             }else if(level_array[i] != undefined){
