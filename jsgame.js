@@ -11,9 +11,9 @@ var level_two_image = new Image();
 var level_three_image = new Image();
 var collectable_image = new Image();
 
-var level_one_collectables = [[0,100], [50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [400,200]]; //TODO: add locations to add apples
+var level_one_collectables = [[40,200], [40,300], [40,350], [50,105], [150,105],[250,105],[350,105],[450,100],[550,100],[50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [400,200]]; //TODO: add locations to add apples
 var level_two_collectables = [[1,1]];//TODO: add locations to add apples
-var level_three_collectables = [[1,1]];//TODO: add locations to add apples
+var level_three_collectables = [[45,50],[45,100],[45,150],[45,200],[45,250],[45,300],[45,350],[50,50],[100,50],[150,50],[200,50],[250,50],[300,50],[350,50],[400,50],[450,50],[550,50],[500,50],[600,50],[650,50],[700,50],[740,50],[740,100],[740,150],[740,200],[740,250],[740,300],[740,350],[740,400],[740,450],[740,500]];//TODO: add locations to add apples
 
 character_image.src = "images/raccoon.png";  
 level_one_image.src = "images/level_one.jpg";  
@@ -102,7 +102,7 @@ function levelThree() {
 }
 
 function gameOver() {
-    cancelInterval(timer);
+    clearInterval(timer);
     btn.value = "Restart";
     btn.innerHTML = "Restart Game";
     canvas.style.display = "none";
@@ -133,11 +133,11 @@ function update() {
     for(var i =0; i < level_array.length; i++){
         if(level_array[i] != undefined){
             console.log(character_image.width);
-            if(((level_array[i][0] - 60 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 30 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 60 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 30 + collision_radius  >= y + raccoon_offset_y))){
+            if(((level_array[i][0] - 20 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 40 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 20 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 20 + collision_radius  >= y + raccoon_offset_y))){
                 points++;
                 delete level_array[i];
             }else if(level_array[i] != undefined){
-                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 30, 30); //might need to update image size
+                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 20, 20); //might need to update image size
             }
         }
         
