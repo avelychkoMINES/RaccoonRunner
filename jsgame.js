@@ -16,9 +16,9 @@ var level_two_collectables = [[1,1]];//TODO: add locations to add apples
 var level_three_collectables = [[1,1]];//TODO: add locations to add apples
 
 character_image.src = "images/raccoon.png";  
-level_one_image.src = "images/level_one.jpg";  
-level_two_image.src = "images/level_two.jpg";  
-level_three_image.src = "images/level_three.jpg";  
+level_one_image.src = "images/one.jpg";  
+level_two_image.src = "images/two.jpg";  
+level_three_image.src = "images/three.jpg";  
 collectable_image.src = "images/apple.webp";
 
 
@@ -66,10 +66,10 @@ function mainMenu() {
 
 
 function levelOne() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = canvas.width; //TODO: set where the end is
-    finish_y = canvas.height; //TODO: set where the end is
+    x = 0; // Set at the top-left corner
+    y = 0; // Set at the top-left corner
+    finish_x = canvas.width - character_image.width / 2; // Far right in the middle
+    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
     level_image = level_one_image;
     level_array = level_one_collectables;
 
@@ -81,10 +81,10 @@ function levelOne() {
 }
 
 function levelTwo() {
-    x = 0; //TODO: set where the start is 
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 0; // Set at the top-left corner
+    y = 0; // Set at the top-left corner
+    finish_x = canvas.width; // Far right in the middle
+    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
     level_image = level_two_image;
     level_array = level_two_collectables;
 
@@ -96,10 +96,10 @@ function levelTwo() {
 }
 
 function levelThree() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 0; // Set at the middle of the far left corner
+    y = canvas.height / 2 - character_image.height / 2; // Set at the middle of the far left corner
+    finish_x = canvas.width - character_image.width / 2; // Far right in the middle
+    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
     level_image = level_three_image;
     level_array = level_three_collectables;
 
@@ -129,6 +129,10 @@ function gameOver() {
 
 //character
 character_image.onload = function() {
+    character_image.width /= 2; // Resize width by half
+    character_image.height /= 2; // Resize height by half
+    raccoon_offset_x = character_image.width / 2; // Update collision bounds
+    raccoon_offset_y = character_image.height / 2; // Update collision bounds
     update();
 };
 
@@ -148,21 +152,31 @@ function update() {
             }else if(level_array[i] != undefined){
                 draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 30, 30); //might need to update image size
             }
-        }
-        
+        } 
     }
 
     draw.drawImage(character_image, x, y); //draw character image
 
     document.getElementById('points').textContent = "Points: " + points;
+
+    // Check if character reached the end coordinates of the current level
+    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
+        // Transition to the next level
+        if (level_image === level_one_image) {
+            levelTwo();
+        } else if (level_image === level_two_image) {
+            levelThree();
+        } else if (level_image === level_three_image) {
+            gameOver();
+        }
+    }
 }
 
 //updates timer every second
 function updateTimer() {
     curTime = curTime + 1;
     document.getElementById('cur_time').textContent = "Your Time: " + curTime;
-    
-  }
+}
 
 
 //TODO: check against maze walls collision
