@@ -11,9 +11,9 @@ var level_two_image = new Image();
 var level_three_image = new Image();
 var collectable_image = new Image();
 
-var level_one_collectables = [[0,100], [50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [400,200]]; //TODO: add locations to add apples
+var level_one_collectables = [[40,200], [40,300], [40,350], [50,105], [150,105],[250,105],[350,105],[450,100],[550,100],[50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [400,200]]; //TODO: add locations to add apples
 var level_two_collectables = [[1,1]];//TODO: add locations to add apples
-var level_three_collectables = [[1,1]];//TODO: add locations to add apples
+var level_three_collectables = [[45,50],[45,100],[45,150],[45,200],[45,250],[45,300],[45,350],[45,450],[45,500],[50,50],[100,50],[150,50],[200,50],[250,50],[300,50],[350,50],[400,50],[450,50],[550,50],[500,50],[600,50],[650,50],[700,50],[740,50],[450, 110],[740,100],[740,150],[740,200],[740,250],[740,300],[740,350],[740,400],[740,450],[740,500],[640, 100],[640, 150],[640, 200],[640, 250],[640, 300],[640, 350],[640, 400],[370, 110],[200, 110],[250, 110],[300, 110],[400, 110],[370, 150],[370, 200],[370, 250], [100,370], [150,370], [200,370], [250,360], [300,360], [350,360], [400,360], [140,110], [140,150], [140,200], [140,250], [140,300], [140,350], [140,400], [140,450], [140,500], [140,550], [100,435], [150,435], [200,435], [250,435], [300,435], [350,435], [400,435], [450,435], [500,435], [550,435], [600,435],[700,150],[700,200],[700,250],[700,300],[700,350],[700,400],[100,550],[260,550],[300,550],[350,550],[400,550],[550,550], [600,550],[650,550],[75,480], [250,480], [300,480], [350,480],[230,150], [230,200], [230,250], [240,520],[320,150],[370,150],[600,490],[650,490], [270,275],[320,275], [370,275],[420,275],[470,275],[520,275],[570,275],[580,350],[580,400], [580,300],[400,205],[450,205],[520,200],[520,150],[520,250],[540,500],[520,110],[580,110],[480,300],[480,350],[430,500],[430,450], [430,400]];
 
 character_image.src = "images/raccoon.png";  
 level_one_image.src = "images/one.jpg";  
@@ -21,10 +21,10 @@ level_two_image.src = "images/two.jpg";
 level_three_image.src = "images/three.jpg";  
 collectable_image.src = "images/apple.webp";
 
-
 var raccoon_offset_x = character_image.width / 2; //sets up collision bounds
 var raccoon_offset_y = character_image.height / 2;//sets up collision bounds
 var collision_radius = raccoon_offset_x- 10;
+
 var x = 0; 
 var y = 0; 
 var finish_x = 0; 
@@ -32,6 +32,7 @@ var finish_y = 0;
 var step = 5;
 var level_image;
 var level_array;
+var level;
 
 var curTime = 0;
 var bestTime = 0;
@@ -46,7 +47,7 @@ function play() {
         points = 0;
         timer = setInterval(updateTimer, 1000);
         updateTimer();
-        levelOne();
+        levelThree();
     }
     else {
         mainMenu();
@@ -64,54 +65,44 @@ function mainMenu() {
     curTime = 0; //reset current time if game was restarted
 }
 
-
 function levelOne() {
-    x = 0; // Set at the top-left corner
-    y = 0; // Set at the top-left corner
-    finish_x = canvas.width - character_image.width / 2; // Far right in the middle
-    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
+    x = 0; //TODO: set where the start is
+    y = 0; //TODO: set where the start is
+    finish_x = canvas.width; //TODO: set where the end is
+    finish_y = canvas.height; //TODO: set where the end is
     level_image = level_one_image;
     level_array = level_one_collectables;
+    level = 1;
 
     update();
-    //TODO: if reached exit, go to level two
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
-        levelTwo();
-    }
 }
 
 function levelTwo() {
-    x = 0; // Set at the top-left corner
-    y = 0; // Set at the top-left corner
-    finish_x = canvas.width; // Far right in the middle
-    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
+    x = 0; //TODO: set where the start is 
+    y = 0; //TODO: set where the start is
+    finish_x = 0; //TODO: set where the end is
+    finish_y = 0; //TODO: set where the end is
     level_image = level_two_image;
     level_array = level_two_collectables;
+    level = 2;
 
     update();
-    //TODO: if reached exit, go to level three
-    if (x + character_image.width / 2 >= finish_x && y + character_image.height / 2 >= finish_y) {
-        levelThree();
-    }
 }
 
 function levelThree() {
-    x = 0; // Set at the middle of the far left corner
-    y = canvas.height / 2 - character_image.height / 2; // Set at the middle of the far left corner
-    finish_x = canvas.width - character_image.width / 2; // Far right in the middle
-    finish_y = canvas.height / 2 - character_image.height / 2; // Top right in the middle
+    x = 0; //TODO: set where the start is
+    y = 0; //TODO: set where the start is
+    finish_x = 0; //TODO: set where the end is
+    finish_y = 0; //TODO: set where the end is
     level_image = level_three_image;
     level_array = level_three_collectables;
+    level = 3;
 
     update();
-    //TODO: if reached exit, display results
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
-        gameOver();
-    }
 }
 
 function gameOver() {
-    cancelInterval(timer);
+    clearInterval(timer);
     btn.value = "Restart";
     btn.innerHTML = "Restart Game";
     canvas.style.display = "none";
@@ -146,11 +137,11 @@ function update() {
     for(var i =0; i < level_array.length; i++){
         if(level_array[i] != undefined){
             console.log(character_image.width);
-            if(((level_array[i][0] - 60 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 30 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 60 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 30 + collision_radius  >= y + raccoon_offset_y))){
+            if(((level_array[i][0] - 40 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 60 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 20 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 20 + collision_radius  >= y + raccoon_offset_y))){
                 points++;
                 delete level_array[i];
             }else if(level_array[i] != undefined){
-                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 30, 30); //might need to update image size
+                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 20, 20); //might need to update image size
             }
         } 
     }
@@ -158,18 +149,6 @@ function update() {
     draw.drawImage(character_image, x, y); //draw character image
 
     document.getElementById('points').textContent = "Points: " + points;
-
-    // Check if character reached the end coordinates of the current level
-    if (x + character_image.width >= finish_x && y + character_image.height >= finish_y) {
-        // Transition to the next level
-        if (level_image === level_one_image) {
-            levelTwo();
-        } else if (level_image === level_two_image) {
-            levelThree();
-        } else if (level_image === level_three_image) {
-            gameOver();
-        }
-    }
 }
 
 //updates timer every second
@@ -177,7 +156,6 @@ function updateTimer() {
     curTime = curTime + 1;
     document.getElementById('cur_time').textContent = "Your Time: " + curTime;
 }
-
 
 //TODO: check against maze walls collision
 //arrow key listener
@@ -212,3 +190,14 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+
+//TODO: remove, used to check start and finish points
+// document.addEventListener("DOMContentLoaded", function () {
+//     canvas.addEventListener("click", function (event) {
+//         var rect = canvas.getBoundingClientRect();
+//         var x = event.clientX - rect.left;
+//         var y = event.clientY - rect.top;
+
+//         alert("Coordinates: (" + x + ", " + y + ")");
+//     });
+// });
