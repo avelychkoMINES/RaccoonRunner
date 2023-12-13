@@ -11,9 +11,10 @@ var level_two_image = new Image();
 var level_three_image = new Image();
 var collectable_image = new Image();
 
-var level_one_collectables = [[40,200], [40,300], [40,350], [50,105], [150,105],[250,105],[350,105],[450,100],[550,100],[50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [390,200], [740,110], [740,200], [740,300], [740,400], [630,110],[630,200],[630,300],[630,400],[700,200],[700,300],[580,200],[580,300],[580,400],[735,500],[640,490],[590,490], [590,550],[640,550],[530,550],[530,490], [535,430],[300,260],[200,265],[140,260],[140,360],[140,160],[90,160],[90,225],[300,180], [220,180],[470,165],[550,165], [390,130],[450,220]]; 
-var level_two_collectables = [[10,290],[740,50], [730,370],[737,200],[640,110],[735,540],[540,545],[545,250],[545,160],[250,540],[40,50],[40,540],[40,180], [40, 360],[400,50],[735,430], [500,430],[300,430],[135,430],[350,540],[640,540],[640,390],[640,220],[300,210],[405,210],[500,360],[350,360],[140,250],[140,70],[300,370],[200,270],[420,275],[190,360],[300,270],[80,200],[80,300],[250,150],[200,110]];
-var level_three_collectables = [[45,50],[45,100],[45,150],[45,200],[45,250],[45,300],[45,350],[45,450],[45,500],[50,50],[100,50],[150,50],[200,50],[250,50],[300,50],[350,50],[400,50],[450,50],[550,50],[500,50],[600,50],[650,50],[700,50],[740,50],[450, 110],[740,100],[740,150],[740,200],[740,250],[740,300],[740,350],[740,400],[740,450],[740,500],[640, 100],[640, 150],[640, 200],[640, 250],[640, 300],[640, 350],[640, 400],[370, 110],[200, 110],[250, 110],[300, 110],[400, 110],[370, 150],[370, 200],[370, 250], [100,370], [150,370], [200,370], [250,360], [300,360], [350,360], [400,360], [140,110], [140,150], [140,200], [140,250], [140,300], [140,350], [140,400], [140,450], [140,500], [140,550], [100,435], [150,435], [200,435], [250,435], [300,435], [350,435], [400,435], [450,435], [500,435], [550,435], [600,435],[700,150],[700,200],[700,250],[700,300],[700,350],[700,400],[100,550],[260,550],[300,550],[350,550],[400,550],[550,550], [600,550],[650,550],[75,480], [250,480], [300,480], [350,480],[230,150], [230,200], [230,250], [240,520],[320,150],[370,150],[600,490],[650,490], [270,275],[320,275], [370,275],[420,275],[470,275],[520,275],[570,275],[580,350],[580,400], [580,300],[400,205],[450,205],[520,200],[520,150],[520,250],[540,500],[520,110],[580,110],[480,300],[480,350],[430,500],[430,450], [430,400]];
+var level_one_collectables = [[50,17],[50,72],[50,159],[50,284],[171,248],[171,160],[116,158],[222,70],[278,69],[280,157],[280,245],[348,286],[351,249],[493,247],[495,163],[438,159],[349,159],[345,71],[434,74],[543,72],[542,14],[293,14],[546,160]]; 
+var level_two_collectables = [[76,19],[77,122],[149,123],[148,18],[277,20],[200,127],[226,179],[149,216],[276,178],[275,122],[277,71],[277,322],[366,321],[459,318],[365,248],[453,248],[451,182],[489,105],[366,178],[366,72],[454,70],[456,16]];
+var level_three_collectables = [[43,163],[40,33],[43,305],[95,247],[96,124],[97,33],[170,68],[169,124],[260,31],[258,72],[259,160],[168,162],[167,194],[169,250],[151,288],[154,325],[223,321],[307,322],[259,249],[307,249],[310,191],[476,213],[397,248],[477,156],[525,86],[397,86]];
+
 var reset_level_one = level_one_collectables;
 var reset_level_two = level_two_collectables;
 var reset_level_three = level_three_collectables;
@@ -45,9 +46,9 @@ var points = 0;
 function play() {
     if (btn.value == "Start") {
         //reset collectable locations
-        level_one_collectables = [[40,200], [40,300], [40,350], [50,105], [150,105],[250,105],[350,105],[450,100],[550,100],[50,40], [100,45] , [200,45] , [300,45] , [400,45] , [500,45] , [600,45] , [700,45], [390,200], [740,110], [740,200], [740,300], [740,400], [630,110],[630,200],[630,300],[630,400],[700,200],[700,300],[580,200],[580,300],[580,400],[735,500],[640,490],[590,490], [590,550],[640,550],[530,550],[530,490], [535,430],[300,260],[200,265],[140,260],[140,360],[140,160],[90,160],[90,225],[300,180], [220,180],[470,165],[550,165], [390,130],[450,220]]; 
-        level_two_collectables = [[10,290],[740,50], [730,370],[737,200],[640,110],[735,540],[540,545],[545,250],[545,160],[250,540],[40,50],[40,540],[40,180], [40, 360],[400,50],[735,430], [500,430],[300,430],[135,430],[350,540],[640,540],[640,390],[640,220],[300,210],[405,210],[500,360],[350,360],[140,250],[140,70],[300,370],[200,270],[420,275],[190,360],[300,270],[80,200],[80,300],[250,150],[200,110]];
-        level_three_collectables = [[45,50],[45,100],[45,150],[45,200],[45,250],[45,300],[45,350],[45,450],[45,500],[50,50],[100,50],[150,50],[200,50],[250,50],[300,50],[350,50],[400,50],[450,50],[550,50],[500,50],[600,50],[650,50],[700,50],[740,50],[450, 110],[740,100],[740,150],[740,200],[740,250],[740,300],[740,350],[740,400],[740,450],[740,500],[640, 100],[640, 150],[640, 200],[640, 250],[640, 300],[640, 350],[640, 400],[370, 110],[200, 110],[250, 110],[300, 110],[400, 110],[370, 150],[370, 200],[370, 250], [100,370], [150,370], [200,370], [250,360], [300,360], [350,360], [400,360], [140,110], [140,150], [140,200], [140,250], [140,300], [140,350], [140,400], [140,450], [140,500], [140,550], [100,435], [150,435], [200,435], [250,435], [300,435], [350,435], [400,435], [450,435], [500,435], [550,435], [600,435],[700,150],[700,200],[700,250],[700,300],[700,350],[700,400],[100,550],[260,550],[300,550],[350,550],[400,550],[550,550], [600,550],[650,550],[75,480], [250,480], [300,480], [350,480],[230,150], [230,200], [230,250], [240,520],[320,150],[370,150],[600,490],[650,490], [270,275],[320,275], [370,275],[420,275],[470,275],[520,275],[570,275],[580,350],[580,400], [580,300],[400,205],[450,205],[520,200],[520,150],[520,250],[540,500],[520,110],[580,110],[480,300],[480,350],[430,500],[430,450], [430,400]];
+        level_one_collectables = [[50,17],[50,72],[50,159],[50,284],[171,248],[171,160],[116,158],[222,70],[278,69],[280,157],[280,245],[348,286],[351,249],[493,247],[495,163],[438,159],[349,159],[345,71],[434,74],[543,72],[542,14],[293,14],[546,160]]; 
+        level_two_collectables = [[76,19],[77,122],[149,123],[148,18],[277,20],[200,127],[226,179],[149,216],[276,178],[275,122],[277,71],[277,322],[366,321],[459,318],[365,248],[453,248],[451,182],[489,105],[366,178],[366,72],[454,70],[456,16]];
+        level_three_collectables = [[43,163],[40,33],[43,305],[95,247],[96,124],[97,33],[170,68],[169,124],[260,31],[258,72],[259,160],[168,162],[167,194],[169,250],[151,288],[154,325],[223,321],[307,322],[259,249],[307,249],[310,191],[476,213],[397,248],[477,156],[525,86],[397,86]];
         canvas.style.display = "inline-block";
         btn.style.display = "none";
         //if play button is pressed, go to level one
@@ -73,10 +74,10 @@ function mainMenu() {
 }
 
 function levelOne() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = canvas.width; //TODO: set where the end is
-    finish_y = canvas.height; //TODO: set where the end is
+    x = 0; 
+    y = 0; 
+    finish_x = canvas.width/2; 
+    finish_y = canvas.height/2; 
     level_image = level_one_image;
     level_array = level_one_collectables;
     level = 1;
@@ -85,10 +86,10 @@ function levelOne() {
 }
 
 function levelTwo() {
-    x = 0; //TODO: set where the start is 
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 0; 
+    y = 0; 
+    finish_x = 569; 
+    finish_y = 102; 
     level_image = level_two_image;
     level_array = level_two_collectables;
     level = 2;
@@ -97,10 +98,10 @@ function levelTwo() {
 }
 
 function levelThree() {
-    x = 0; //TODO: set where the start is
-    y = 0; //TODO: set where the start is
-    finish_x = 0; //TODO: set where the end is
-    finish_y = 0; //TODO: set where the end is
+    x = 1; 
+    y = 160; 
+    finish_x = 569; 
+    finish_y = 157; 
     level_image = level_three_image;
     level_array = level_three_collectables;
     level = 3;
@@ -135,28 +136,32 @@ character_image.onload = function() {
 };
 
 function update() {
-    draw.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
-    draw.drawImage(level_image, 0, 0, canvas.width, canvas.height); //draw level image
-    
-    //TODO: draw maze level walls
+    draw.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+    draw.drawImage(level_image, 0, 0, canvas.width, canvas.height); // draw level image
 
-    //checks collectables and draws them
-    for(var i =0; i < level_array.length; i++){
-        if(level_array[i] != undefined){
-            console.log(character_image.width);
-            if(((level_array[i][0] -40 - collision_radius   <= x + raccoon_offset_x) && (level_array[i][0] + 40 + collision_radius  >= x + raccoon_offset_x)) && ((level_array[i][1] - 20 - collision_radius  <= y + raccoon_offset_y) && (level_array[i][1] + 20 + collision_radius  >= y + raccoon_offset_y))){
+    // checks collectables and draws them
+    for (var i = 0; i < level_array.length; i++) {
+        if (level_array[i] != undefined) {
+            if (
+                ((level_array[i][0] - 40 - collision_radius <= x + raccoon_offset_x) &&
+                    (level_array[i][0] + 40 + collision_radius >= x + raccoon_offset_x)) &&
+                ((level_array[i][1] - 20 - collision_radius <= y + raccoon_offset_y) &&
+                    (level_array[i][1] + 20 + collision_radius >= y + raccoon_offset_y))
+            ) {
                 points++;
                 delete level_array[i];
-            }else if(level_array[i] != undefined){
-                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 20, 20); //might need to update image size
+            } else if (level_array[i] != undefined) {
+                draw.drawImage(collectable_image, level_array[i][0], level_array[i][1], 20, 20); // might need to update image size
             }
-        } 
+        }
     }
 
-    draw.drawImage(character_image, x, y); //draw character image
+    draw.drawImage(character_image, x, y); // draw character image
 
-    document.getElementById('points').textContent = "Points: " + points;
+
+    document.getElementById('points').textContent = 'Points: ' + points;
 }
+
 
 //updates timer every second
 function updateTimer() {
@@ -165,6 +170,45 @@ function updateTimer() {
 }
 
 //TODO: check against maze walls collision
+// Level One obstacles
+var level_one_obstacles = [
+    "levelOneObstacle1",
+    "levelOneObstacle2",
+    "levelOneObstacle3",
+    "levelOneObstacle4",
+    "levelOneObstacle5",
+    "levelOneObstacle6",
+    "levelOneObstacle7",
+    "levelOneObstacle8",
+    "levelOneObstacle9",
+    "levelOneObstacle10",
+    "levelOneObstacle11",
+    "levelOneObstacle12",
+    "levelOneObstacle13",
+    "levelOneObstacle14",
+    "levelOneObstacle15",
+    "levelOneObstacle16",
+    "levelOneObstacle17",
+    "levelOneObstacle18",
+    "levelOneObstacle19",
+    "levelOneObstacle20"
+];
+
+// Updated isLevelOneObstacle function to handle multiple obstacles
+function isLevelOneObstacle(x, y) {
+    for (var i = 0; i < level_one_obstacles.length; i++) {
+        var obstacleArea = document.getElementById(level_one_obstacles[i]).coords.split(",").map(Number);
+        if (
+            x >= obstacleArea[0] && x <= obstacleArea[2] &&
+            y >= obstacleArea[1] && y <= obstacleArea[3]
+        ) {
+            return true; // Point is within the bounds of at least one obstacle
+        }
+    }
+    return false; // Point is not within the bounds of any obstacle
+}
+
+
 //arrow key listener
 //e.preventDefault stops it from scrolling page
 document.addEventListener('keydown', function(e) {
