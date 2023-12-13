@@ -10,7 +10,7 @@ def click_event(event, x, y, flags, param):
         print(f"Coordinates: ({x}, {y})")
 
 # Load the image
-image_path = "images/two.jpg"  # Replace with your image path
+image_path = "images/three.jpg"  # Replace with your image path
 original_image = cv2.imread(image_path)
 
 # Define the desired width and height

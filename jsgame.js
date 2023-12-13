@@ -169,7 +169,7 @@ function updateTimer() {
     document.getElementById('cur_time').textContent = "Your Time: " + curTime;
 }
 
-//TODO: check against maze walls collision
+// check against maze walls collision
 // Level One obstacles
 var level_one_obstacles = [
     "levelOneObstacle1",
@@ -208,47 +208,182 @@ function isLevelOneObstacle(x, y) {
     return false; // Point is not within the bounds of any obstacle
 }
 
+var level_two_obstacles = [
+    "levelTwoObstacle1",
+    "levelTwoObstacle2",
+    "levelTwoObstacle3",
+    "levelTwoObstacle4",
+    "levelTwoObstacle5",
+    "levelTwoObstacle6",
+    "levelTwoObstacle7",
+    "levelTwoObstacle8",
+    "levelTwoObstacle9",
+    "levelTwoObstacle10",
+    "levelTwoObstacle11",
+    "levelTwoObstacle12",
+    "levelTwoObstacle13",
+    "levelTwoObstacle14",
+    "levelTwoObstacle15",
+    "levelTwoObstacle16",
+    "levelTwoObstacle17",
+    "levelTwoObstacle18",
+    "levelTwoObstacle19",
+    "levelTwoObstacle20"
+];
 
-//arrow key listener
-//e.preventDefault stops it from scrolling page
+// Updated isLevelTwoObstacle function to handle multiple obstacles
+function isLevelTwoObstacle(x, y) {
+    for (var i = 0; i < level_two_obstacles.length; i++) {
+        var obstacleArea = document.getElementById(level_two_obstacles[i]).coords.split(",").map(Number);
+        if (
+            x >= obstacleArea[0] && x <= obstacleArea[2] &&
+            y >= obstacleArea[1] && y <= obstacleArea[3]
+        ) {
+            return true; // Point is within the bounds of at least one obstacle
+        }
+    }
+    return false; // Point is not within the bounds of any obstacle
+}
+
+var level_three_obstacles = [
+    "levelThreeObstacle1",
+    "levelThreeObstacle2",
+    "levelThreeObstacle3",
+    "levelThreeObstacle4",
+    "levelThreeObstacle5",
+    "levelThreeObstacle6",
+    "levelThreeObstacle7",
+    "levelThreeObstacle8",
+    "levelThreeObstacle9",
+    "levelThreeObstacle10",
+    "levelThreeObstacle11",
+    "levelThreeObstacle12",
+    "levelThreeObstacle13",
+    "levelThreeObstacle14",
+    "levelThreeObstacle15",
+    "levelThreeObstacle16",
+    "levelThreeObstacle17",
+    "levelThreeObstacle18",
+    "levelThreeObstacle19",
+    "levelThreeObstacle20",
+    "levelThreeObstacle21",
+    "levelThreeObstacle22",
+    "levelThreeObstacle23",
+    "levelThreeObstacle24",
+    "levelThreeObstacle25",
+    "levelThreeObstacle26",
+    "levelThreeObstacle27",
+    "levelThreeObstacle28",
+    "levelThreeObstacle29",
+    "levelThreeObstacle30",
+    "levelThreeObstacle31"
+
+];
+
+// Updated isLevelThreeObstacle function to handle multiple obstacles
+function isLevelThreeObstacle(x, y) {
+    for (var i = 0; i < level_three_obstacles.length; i++) {
+        var obstacleArea = document.getElementById(level_three_obstacles[i]).coords.split(",").map(Number);
+        if (
+            x >= obstacleArea[0] && x <= obstacleArea[2] &&
+            y >= obstacleArea[1] && y <= obstacleArea[3]
+        ) {
+            return true; // Point is within the bounds of at least one obstacle
+        }
+    }
+    return false; // Point is not within the bounds of any obstacle
+}
+
+// Arrow key listener
 document.addEventListener('keydown', function(e) {
     if (e.key == "ArrowRight") {
         e.preventDefault();
         if (x + character_image.width <= canvas.width) {
-            x += step;
+            if (level === 1 && !isLevelOneObstacle(x + step, y)) {
+                x += step;
+                checkLevelCompletion();
+            } else if (level === 2 && !isLevelTwoObstacle(x + step, y)) {
+                x += step;
+                checkLevelCompletion();
+            } else if (level === 3 && !isLevelThreeObstacle(x + step, y)) {
+                x += step;
+                checkLevelCompletion();
+            } else {
+                alert("Stay on the path!");
+            }
             update();
         }
     }
     else if (e.key == "ArrowLeft") {
         e.preventDefault();
         if (x - step >= 0) {
-            x -= step;
+            if (level === 1 && !isLevelOneObstacle(x - step, y)) {
+                x -= step;
+                checkLevelCompletion();
+            } else if (level === 2 && !isLevelTwoObstacle(x - step, y)) {
+                x -= step;
+                checkLevelCompletion();
+            } else if (level === 3 && !isLevelThreeObstacle(x - step, y)) {
+                x -= step;
+                checkLevelCompletion();
+            } else {
+                alert("Stay on the path!");
+            }
             update();
         }
     }
     else if (e.key == "ArrowUp") {
         e.preventDefault();
         if (y - step >= 0) {
-            y -= step;
+            if (level === 1 && !isLevelOneObstacle(x, y - step)) {
+                y -= step;
+                checkLevelCompletion();
+            } else if (level === 2 && !isLevelTwoObstacle(x, y - step)) {
+                y -= step;
+                checkLevelCompletion();
+            } else if (level === 3 && !isLevelThreeObstacle(x, y - step)) {
+                y -= step;
+                checkLevelCompletion();
+            } else {
+                alert("Stay on the path!");
+            }
             update();
         }
     }
     else if (e.key == "ArrowDown") {
         e.preventDefault();
         if (y + step + character_image.height <= canvas.height) {
-            y += step;
+            if (level === 1 && !isLevelOneObstacle(x, y + step)) {
+                y += step;
+                checkLevelCompletion();
+            } else if (level === 2 && !isLevelTwoObstacle(x, y + step)) {
+                y += step;
+                checkLevelCompletion();
+            } else if (level === 3 && !isLevelThreeObstacle(x, y + step)) {
+                y += step;
+                checkLevelCompletion();
+            } else {
+                alert("Stay on the path!");
+            }
             update();
         }
     }
 });
 
-//TODO: remove, used to check start and finish points
-// document.addEventListener("DOMContentLoaded", function () {
-//     canvas.addEventListener("click", function (event) {
-//         var rect = canvas.getBoundingClientRect();
-//         var x = event.clientX - rect.left;
-//         var y = event.clientY - rect.top;
-
-//         alert("Coordinates: (" + x + ", " + y + ")");
-//     });
-// });
+// Function to check if the player has reached the finish coordinates
+function checkLevelCompletion() {
+    if (x === finish_x && y === finish_y) {
+        if (level < 3) {
+            level++;
+            // Call the appropriate level function (e.g., levelTwo(), levelThree())
+            if (level === 2) {
+                levelTwo();
+            } else if (level === 3) {
+                levelThree();
+            }
+        } else {
+            // Player has completed all levels
+            alert("Congratulations! You completed all levels.");
+        }
+    }
+}
