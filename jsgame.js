@@ -161,20 +161,20 @@ function update() {
 
     document.getElementById('points').textContent = 'Points: ' + points;
 
+    console.log("x ", x, ">= ", finish_x - character_image.height * 3);
+    console.log("y ", y + character_image.width, ">= ", finish_y - step);
+    console.log("y ", y + character_image.width, "<= ", finish_y + step * 3);
     //if reached finish, go onto next
-    if (level == 1) {
-        if (x + character_image.width >= finish_x - step && y + character_image.height >= finish_y - step) {
+    if (x >= finish_x - step - character_image.height * 3 && y + character_image.width >= finish_y - step 
+        && y + character_image.width <= finish_y + step * 3) {
+        if (level == 1) {
             levelTwo();
-        } 
-    } else if (level == 2) {
-        if (x <= finish_x + 5 && y + character_image.height >= finish_y - step) {
+        } else if (level == 2) {
             levelThree();
-        } 
-    } else {
-        if (x + character_image.width >= finish_x - step && y + character_image.height >= finish_y - step) {
+        } else {
             gameOver();
         }
-    }
+    } 
 }
 
 
@@ -262,7 +262,7 @@ function isLevelThreeObstacle(x, y) {
 document.addEventListener('keydown', function(e) {
     if (e.key == "ArrowRight") {
         e.preventDefault();
-        if (x + character_image.width <= canvas.width) {
+        if (x + character_image.width * 2 < canvas.width) {
             if (level === 1 && !isLevelOneObstacle(x + step, y)) {
                 x += step;
                 checkLevelCompletion();
@@ -316,7 +316,7 @@ document.addEventListener('keydown', function(e) {
     }
     else if (e.key == "ArrowDown") {
         e.preventDefault();
-        if (y + step + character_image.height <= canvas.height) {
+        if (y + character_image.height * 2 <= canvas.height) {
             if (level === 1 && !isLevelOneObstacle(x, y + step)) {
                 y += step;
                 checkLevelCompletion();
@@ -351,3 +351,13 @@ function checkLevelCompletion() {
         }
     }
 }
+
+//TODO: remove, used to check start and finish points
+document.addEventListener("DOMContentLoaded", function () {
+    canvas.addEventListener("click", function (event) {
+        var rect = canvas.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+        alert("Coordinates: (" + x + ", " + y + ")");
+    });
+});
