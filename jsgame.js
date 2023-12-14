@@ -351,13 +351,3 @@ function checkLevelCompletion() {
         }
     }
 }
-
-//TODO: remove, used to check start and finish points
-document.addEventListener("DOMContentLoaded", function () {
-    canvas.addEventListener("click", function (event) {
-        var rect = canvas.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
-        alert("Coordinates: (" + x + ", " + y + ")");
-    });
-});
