@@ -161,9 +161,6 @@ function update() {
 
     document.getElementById('points').textContent = 'Points: ' + points;
 
-    console.log("x ", x, ">= ", finish_x - character_image.height * 3);
-    console.log("y ", y + character_image.width, ">= ", finish_y - step);
-    console.log("y ", y + character_image.width, "<= ", finish_y + step * 3);
     //if reached finish, go onto next
     if (x >= finish_x - step - character_image.height * 3 && y + character_image.width >= finish_y - step 
         && y + character_image.width <= finish_y + step * 3) {
