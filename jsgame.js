@@ -160,6 +160,21 @@ function update() {
 
 
     document.getElementById('points').textContent = 'Points: ' + points;
+
+    //if reached finish, go onto next
+    if (level == 1) {
+        if (x + character_image.width >= finish_x - step && y + character_image.height >= finish_y - step) {
+            levelTwo();
+        } 
+    } else if (level == 2) {
+        if (x <= finish_x + 5 && y + character_image.height >= finish_y - step) {
+            levelThree();
+        } 
+    } else {
+        if (x + character_image.width >= finish_x - step && y + character_image.height >= finish_y - step) {
+            gameOver();
+        }
+    }
 }
 
 
@@ -370,20 +385,3 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Function to check if the player has reached the finish coordinates
-function checkLevelCompletion() {
-    if (x === finish_x && y === finish_y) {
-        if (level < 3) {
-            level++;
-            // Call the appropriate level function (e.g., levelTwo(), levelThree())
-            if (level === 2) {
-                levelTwo();
-            } else if (level === 3) {
-                levelThree();
-            }
-        } else {
-            // Player has completed all levels
-            alert("Congratulations! You completed all levels.");
-        }
-    }
-}
