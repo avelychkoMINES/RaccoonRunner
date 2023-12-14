@@ -76,8 +76,8 @@ function mainMenu() {
 function levelOne() {
     x = 0; 
     y = 0; 
-    finish_x = canvas.width/2; 
-    finish_y = canvas.height/2; 
+    finish_x = 568; 
+    finish_y = 165; 
     level_image = level_one_image;
     level_array = level_one_collectables;
     level = 1;
@@ -192,21 +192,7 @@ var level_one_obstacles = [
     "levelOneObstacle3",
     "levelOneObstacle4",
     "levelOneObstacle5",
-    "levelOneObstacle6",
-    "levelOneObstacle7",
-    "levelOneObstacle8",
-    "levelOneObstacle9",
-    "levelOneObstacle10",
-    "levelOneObstacle11",
-    "levelOneObstacle12",
-    "levelOneObstacle13",
-    "levelOneObstacle14",
-    "levelOneObstacle15",
-    "levelOneObstacle16",
-    "levelOneObstacle17",
-    "levelOneObstacle18",
-    "levelOneObstacle19",
-    "levelOneObstacle20"
+
 ];
 
 // Updated isLevelOneObstacle function to handle multiple obstacles
@@ -231,19 +217,7 @@ var level_two_obstacles = [
     "levelTwoObstacle5",
     "levelTwoObstacle6",
     "levelTwoObstacle7",
-    "levelTwoObstacle8",
-    "levelTwoObstacle9",
-    "levelTwoObstacle10",
-    "levelTwoObstacle11",
-    "levelTwoObstacle12",
-    "levelTwoObstacle13",
-    "levelTwoObstacle14",
-    "levelTwoObstacle15",
-    "levelTwoObstacle16",
-    "levelTwoObstacle17",
-    "levelTwoObstacle18",
-    "levelTwoObstacle19",
-    "levelTwoObstacle20"
+    "levelTwoObstacle8"
 ];
 
 // Updated isLevelTwoObstacle function to handle multiple obstacles
@@ -267,32 +241,7 @@ var level_three_obstacles = [
     "levelThreeObstacle4",
     "levelThreeObstacle5",
     "levelThreeObstacle6",
-    "levelThreeObstacle7",
-    "levelThreeObstacle8",
-    "levelThreeObstacle9",
-    "levelThreeObstacle10",
-    "levelThreeObstacle11",
-    "levelThreeObstacle12",
-    "levelThreeObstacle13",
-    "levelThreeObstacle14",
-    "levelThreeObstacle15",
-    "levelThreeObstacle16",
-    "levelThreeObstacle17",
-    "levelThreeObstacle18",
-    "levelThreeObstacle19",
-    "levelThreeObstacle20",
-    "levelThreeObstacle21",
-    "levelThreeObstacle22",
-    "levelThreeObstacle23",
-    "levelThreeObstacle24",
-    "levelThreeObstacle25",
-    "levelThreeObstacle26",
-    "levelThreeObstacle27",
-    "levelThreeObstacle28",
-    "levelThreeObstacle29",
-    "levelThreeObstacle30",
-    "levelThreeObstacle31"
-
+    "levelThreeObstacle7"
 ];
 
 // Updated isLevelThreeObstacle function to handle multiple obstacles
@@ -385,3 +334,20 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Function to check if the player has reached the finish coordinates
+function checkLevelCompletion() {
+    if (x === finish_x && y === finish_y) {
+        if (level < 3) {
+            level++;
+            // Call the appropriate level function (e.g., levelTwo(), levelThree())
+            if (level === 2) {
+                levelTwo();
+            } else if (level === 3) {
+                levelThree();
+            }
+        } else {
+            // Player has completed all levels
+            alert("Congratulations! You completed all levels.");
+        }
+    }
+}
